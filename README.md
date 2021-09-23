@@ -8,6 +8,8 @@ A repository for my data engineering project
 
 -postgresdb (staging area)
 
+-dbt (transformation)
+
 -mariadb (destination)
 
 -airbyte (etl)
