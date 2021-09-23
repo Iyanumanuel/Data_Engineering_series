@@ -20,7 +20,7 @@ with DAG(dag_id='airbyte_crime_data_etl',
          default_args=default_args,
          schedule_interval='@hourly',
          start_date=days_ago(0),
-         dagrun_timeout=300
+         dagrun_timeout=100
          ) as dag:
 
     example_sync = AirbyteTriggerSyncOperator(
