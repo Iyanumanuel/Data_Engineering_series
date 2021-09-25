@@ -25,7 +25,7 @@ with DAG(dag_id='airbyte_crime_data_etl',
 
     crime_data_etl = BashOperator(
         task_id='crime_data_python_etl',
-        bash_command='python ~/dags/scripts/crime_data_etl.py',
+        bash_command='python /opt/airflow/dags/scripts/crime_data_etl.py'',
         dag=dag
      )
 
