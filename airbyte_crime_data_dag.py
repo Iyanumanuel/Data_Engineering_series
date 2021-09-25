@@ -5,7 +5,7 @@ from airflow.models import Variable
 from datetime import datetime, timedelta
 #from airflow.providers.slack.operators.slack_webhook import SlackWebhookOperator
 #from airflow.operators.email_operator import EmailOperator
-#from airflow.operators.bash_operator import BashOperator
+from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dagrun_operator import TriggerDagRunOperator
 #from airflow.utils.email import send_email
 
@@ -20,14 +20,21 @@ with DAG(dag_id='airbyte_crime_data_etl',
          default_args=default_args,
          schedule_interval='@hourly',
          start_date=days_ago(0),
-         dagrun_timeout=100
+         dagrun_timeout=300
          ) as dag:
 
-    example_sync = AirbyteTriggerSyncOperator(
+    crime_data_etl = BashOperator(
+        task_id='crime_data_python_etl',
+        bash_command='python ~/dags/scripts/crime_data_etl.py',
+        dag=dag
+     )
+
+    airbyte_sync = AirbyteTriggerSyncOperator(
         task_id='airbyte_crime_data_etl',
-        airbyte_conn_id='AIRBYTE_CRIME_CONNECTION_ID',
+        airbyte_conn_id='airbyte_crime_data_conn_id',
         connection_id=airbyte_connection_id,
         asynchronous=False,
-        timeout=60,
+        timeout=300,
         wait_seconds=3
      )
+
