@@ -3,9 +3,14 @@ import pandas as pd
 import sqlalchemy
 import json
 from sqlalchemy import create_engine
-engine = create_engine('postgresql://bi_user:password@66.94.120.221:5432/testdb')
+from decouple import config
 
-url = "https://data.cityofchicago.org/resource/ijzp-q8t2.json"
+db_conn = config('conn', default= '')
+data_url = config('data_url', default= '')
+
+engine = create_engine(db_conn)
+
+url = data_url
 
 json_data = pd.read_json(url)
 
