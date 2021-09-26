@@ -22,6 +22,7 @@ column_list = ['id', 'case_number', 'date', 'block', 'iucr', 'primary_type',
        'computed_region_vrxf_vc4k', 'computed_region_bdys_3d7i',
        'computed_region_43wa_7qmu', 'computed_region_rpca_8um6',
        'computed_region_d9mm_jgwp', 'computed_region_d3ds_rm58']
+       
 json_data.columns = column_list
 
 json_data = json_data.astype(str)
