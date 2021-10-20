@@ -38,3 +38,6 @@ with DAG(dag_id='airbyte_crime_data_etl',
         wait_seconds=3
      )
 
+        
+
+example_sync >> send_email
