@@ -1,3 +1,2 @@
-*.env
-*.ipnb
-*.gitignore
+.env
+*.ipynb
